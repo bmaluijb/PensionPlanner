@@ -1,0 +1,24 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 18
+VisualStudioVersion = 18.7.11819.209 insiders
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PensionPlanner", "PensionPlanner.csproj", "{D7828468-2740-CC1A-5F69-DF9F11756C8D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D7828468-2740-CC1A-5F69-DF9F11756C8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7828468-2740-CC1A-5F69-DF9F11756C8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7828468-2740-CC1A-5F69-DF9F11756C8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7828468-2740-CC1A-5F69-DF9F11756C8D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {19494AB3-BADA-4FEF-AC96-E53CC70CB50B}
+	EndGlobalSection
+EndGlobal
