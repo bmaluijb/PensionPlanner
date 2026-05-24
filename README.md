@@ -4,7 +4,7 @@ A pension/retirement planning application built for the **GitHub Copilot Worksho
 
 ## Getting Started
 
-**No install required** — `run.bat` automatically downloads .NET 10 if it's not on your machine (first run only, ~300 MB, no admin rights needed).
+**No install required** — if you already have .NET 8, 9, or 10 installed, `run.bat` uses it. Otherwise it automatically downloads .NET 8 to a local `.dotnet\` folder on first run (~200 MB, no admin rights needed, nothing installed system-wide).
 
 ### Run the App
 
@@ -127,7 +127,7 @@ Create a file `.github/copilot-instructions.md` in the root of this repo with pr
 ```markdown
 # Project Instructions
 
-- This is a .NET 10 Minimal API project for PensionFirst (PF)
+- This is a .NET 8 Minimal API project for PensionFirst (PF)
 - Use Dutch-language XML doc comments on all public methods
 - Follow the existing pattern: Services handle business logic, Endpoints only map routes
 - Always use decimal for monetary values, never double or float

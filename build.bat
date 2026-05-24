@@ -7,11 +7,11 @@ echo   NN Pension Planner - Building...
 echo ============================================
 echo.
 
-:: Ensure .NET 10 SDK is available (downloads if needed)
+:: Ensure a compatible .NET SDK is available (downloads .NET 8 if needed)
 call "%~dp0setup-dotnet.bat"
 if %ERRORLEVEL% neq 0 exit /b 1
 
-dotnet build NNPensionPlanner.csproj
+dotnet build PensionPlanner.csproj
 if %ERRORLEVEL% neq 0 (
     echo.
     echo Build FAILED.

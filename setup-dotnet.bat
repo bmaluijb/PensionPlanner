@@ -1,8 +1,9 @@
 @echo off
-:: Checks if .NET 10 SDK is available locally or on the system.
-:: If not, downloads it to .dotnet/ in the repo (no admin, no system install).
+:: Checks if a compatible .NET SDK (>= 8) is available locally or on the system.
+:: If not, downloads the latest .NET 8 LTS to .dotnet/ in the repo (no admin, no system install).
 
-set DOTNET_SDK_VERSION=10.0.201
+set DOTNET_MIN_MAJOR=8
+set DOTNET_CHANNEL=8.0
 
 :: Check if the local .dotnet folder already has the SDK
 if exist "%~dp0.dotnet\dotnet.exe" (
@@ -11,20 +12,20 @@ if exist "%~dp0.dotnet\dotnet.exe" (
     goto :done
 )
 
-:: Check if dotnet is already on the system with the right major version
+:: Check if dotnet is already on the system with a sufficient major version (8, 9, 10, ...)
 where dotnet >nul 2>&1
 if %ERRORLEVEL% equ 0 (
     for /f "tokens=1 delims=." %%a in ('dotnet --version 2^>nul') do (
-        if "%%a"=="10" goto :done
+        if %%a GEQ %DOTNET_MIN_MAJOR% goto :done
     )
 )
 
-:: .NET 10 not found — download it
+:: No compatible .NET SDK found — download .NET 8 LTS locally
 echo.
 echo ============================================
-echo   .NET 10 SDK not found on this machine.
-echo   Downloading to .dotnet\ folder...
-echo   (This only happens once, ~300 MB)
+echo   .NET SDK %DOTNET_MIN_MAJOR%+ not found on this machine.
+echo   Downloading .NET %DOTNET_CHANNEL% to .dotnet\ folder...
+echo   (This only happens once, ~200 MB)
 echo ============================================
 echo.
 
@@ -40,7 +41,7 @@ if %ERRORLEVEL% neq 0 (
 
 :: Install .NET SDK locally (no admin, no system changes)
 powershell -NoProfile -ExecutionPolicy Bypass -Command ^
-    "& '%TEMP%\dotnet-install.ps1' -Version '%DOTNET_SDK_VERSION%' -InstallDir '%~dp0.dotnet' -NoPath"
+    "& '%TEMP%\dotnet-install.ps1' -Channel '%DOTNET_CHANNEL%' -InstallDir '%~dp0.dotnet' -NoPath"
 
 if %ERRORLEVEL% neq 0 (
     echo ERROR: Failed to install .NET SDK. Check the errors above.
@@ -49,7 +50,7 @@ if %ERRORLEVEL% neq 0 (
 )
 
 echo.
-echo .NET 10 SDK installed to .dotnet\ folder.
+echo .NET %DOTNET_CHANNEL% SDK installed to .dotnet\ folder.
 echo.
 
 set DOTNET_ROOT=%~dp0.dotnet
