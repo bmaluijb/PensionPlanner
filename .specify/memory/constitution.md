@@ -20,7 +20,7 @@ Domain events (EnrollmentCreatedEvent, ContributionAddedEvent, etc.) decouple se
 ## Technology & Architecture Standards
 
 - **Language**: C# with nullable reference types and implicit usings enabled  
-- **Framework**: .NET 10 Minimal APIs  
+- **Framework**: .NET 8 Minimal APIs  
 - **Data Access**: In-memory (no external database) via generic `InMemoryRepository<T>`  
 - **Persistence**: `ConcurrentDictionary` for thread-safe in-memory storage  
 - **Serialization**: JSON (camelCase, enum as strings via `JsonStringEnumConverter`)  

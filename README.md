@@ -141,11 +141,11 @@ Create a file `.github/copilot-instructions.md` in the root of this repo with pr
 6. Compare the responses — notice how Copilot now follows your conventions (Dutch doc comments, naming patterns, event publishing, etc.)
 
 #### Part C — Add a `.prompt.md` Reusable Prompt
-Create a file `prompts/add-endpoint.prompt.md` to define a reusable prompt template:
+Create a file `.github/prompts/add-endpoint.prompt.md` to define a reusable prompt template:
 
 ```markdown
 ---
-mode: 'agent'
+agent: 'agent'
 description: 'Generate a new API endpoint following project conventions'
 ---
 
@@ -190,6 +190,18 @@ applyTo: 'Services/**/*.cs'
 
 > **Tip:** Type `/instructions` in the chat input to quickly open the Configure Instructions and Rules menu. You can also use `/create-instruction` followed by a description (e.g., *"always use tabs and single quotes"*) to let AI generate an `.instructions.md` file for you. Use `/init` to auto-generate workspace-wide instructions based on your project structure.
 
+#### Bonus: `AGENTS.md` — Tool-Agnostic Agent Instructions
+
+`.github/copilot-instructions.md` is **Copilot-specific**. `AGENTS.md` is an **open, tool-agnostic standard** that many AI agents read (Copilot, and others). Use it when you want one set of agent instructions that isn't tied to a single tool.
+
+- Place an `AGENTS.md` file anywhere in the repo — the **nearest one in the directory tree wins**, so you can put a repo-wide file at the root and override it in subfolders.
+- A single `CLAUDE.md` or `GEMINI.md` in the repo root works as an alternative.
+- It's plain Markdown (no required frontmatter), just like `copilot-instructions.md`.
+
+Try it: create an `AGENTS.md` at the repo root with the same project conventions from Part B, then ask Copilot a coding question and see it honored. See [agents.md](https://agents.md) for the spec.
+
+> **Note:** If both `.github/copilot-instructions.md` and `AGENTS.md` are present, Copilot can use both — keep them consistent to avoid conflicting guidance.
+
 #### Discussion
 - What difference did the instructions make?
 - Which instructions were most impactful?
@@ -210,13 +222,15 @@ The architecture has enough layers and relationships for interesting diagrams:
 4. You can view Mermaid digrams in VS Code with extensions like these: Markdown Preview Mermaid Support https://marketplace.visualstudio.com/items?itemName=bierner.markdown-mermaid
 5. The best diagram wins! Make it look good and easy to understand
 
+> **Format tip:** Custom agents are `.agent.md` files in the `.github/agents/` folder, with YAML frontmatter (`description`, optional `tools`, `handoffs`, etc.) followed by the agent's instructions. This repo already ships examples there (the `speckit.*.agent.md` files) you can use as a template.
+
 
 ### Exercise 3: Spec Kit Feature Addition
 
 Build a feature using **Spec Driven Development** — go from a plain-English description to working code using Spec Kit commands. Each feature below includes the exact commands to run at every step.
 
 #### How to start
-1. Remove the `copilot-instructions.md` and other instruction files you created in Exercise 1
+1. Remove the `.github/copilot-instructions.md` and other instruction files you created in Exercise 1
 2. Spec Kit is already initialized in this repository — no need to download or initialize it
 3. Pick a feature below (start with an **Easy** one if this is your first time)
 4. Follow the numbered steps inside each feature card

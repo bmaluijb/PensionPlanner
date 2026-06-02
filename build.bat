@@ -3,7 +3,7 @@
 cd /d "%~dp0"
 
 echo ============================================
-echo   NN Pension Planner - Building...
+echo   PensionFirst Planner - Building...
 echo ============================================
 echo.
 
